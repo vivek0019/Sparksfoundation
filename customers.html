@@ -1,0 +1,228 @@
+<!--
+    Author: vivek potdar
+    Grip :The sparks foundation 
+    Role :Basic Banking System 
+    Duration : February 2023 (batch 2023)
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Transactions</title>
+    <link rel="shortcut icon" href="money.png">
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="customer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- navbar starts here  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">
+        <img  src="money.png" height="40px"></a><h4 style="color: white; padding-top: 7px;">SF Bank</h4> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html"> HOME<span class="sr-only">(current)</span></a>
+            </li> &nbsp;
+            <li class="nav-item">
+              <a class="nav-link" href="./customers.html">Customers</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <!-- navbar ends here  -->
+
+    <div class="my-info text-center">
+        <h2><b>Hello, Vivek</b></h2>
+        <h4>Current Balance : <span id="myAccountBalance">100000</span> $</h4>
+
+        <button class="btn btn-info" data-toggle="modal" data-target="#sendMoney">Transfer Money</button>
+        <a class="btn btn-info" href="" data-toggle="modal" data-target="#transactionHistory">See All Transactions</a>
+    </div>
+
+    <!-- Modal send money -->
+    <div class="modal fade" id="sendMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Transfer Money $</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Name: &nbsp; </span>
+                            </div>
+                            <input type="text" id="enterName" class="form-control" placeholder=" Enter Recipient's Name (Case Sensitive)"
+                                aria-label="Recipient's Name" aria-describedby="basic-addon2">    
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$: &nbsp; </span>
+                            </div>
+                            <input type="text" id="enterAmount" class="form-control" placeholder=" Enter Amount"
+                                aria-label=" Enter Amount">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="sendMoney()" class="btn btn-success" data-dismiss="modal">Send
+                        Money</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal transaction History-->
+    <div class="modal fade" id="transactionHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Transaction History</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ol id="transaction-history-body">
+
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- table  -->
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr class="table-danger">
+                        <th scope="column1">Serial No</th>
+                        <th scope="column2">Name</th>
+                        <th scope="column3">Mail Address</th>
+                        <th scope="column4">Balance ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-light" >
+                        <td scope="row">1</td>
+                        <td>Niraj</td>
+                        <td>niraj@gmail.com</td>
+                        <td>
+                            <p id="NirajBalance">53000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-info">
+                        <td scope="row">2</td>
+                        <td>Roshan</td>
+                        <td>roshan@gmail.com</td>
+                        <td>
+                            <p id="RoshanBalance">46000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <td scope="row">3</td>
+                        <td>Alex</td>
+                        <td>Alex@gmail.com</td>
+                        <td>
+                            <p id="AlexBalance">30000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-info">
+                        <td scope="row">4</td>
+                        <td>Priyanka</td>
+                        <td>Priyanka@gmail.com</td>
+                        <td>
+                            <p id="PriyankaBalance">43000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <td scope="row">5</td>
+                        <td>Charli</td>
+                        <td>Charli@gmail.com</td>
+                        <td>
+                            <p id="CharliBalance">50000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-info">
+                        <td scope="row">6</td>
+                        <td>Rojer</td>
+                        <td>Rojer@gmail.com</td>
+                        <td>
+                            <p id="RojerBalance">72000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <td>7</td>
+                        <td>Evaan</td>
+                        <td>Evaan@gmail.com</td>
+                        <td>
+                            <p id="EvaanBalance">76000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-info">
+                        <td>8</td>
+                        <td>Suhaani</td>
+                        <td>Suhaani@gmail.com</td>
+                        <td>
+                            <p id="suhaaniBalance">45000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-light">
+                        <td>9</td>
+                        <td>Akshita</td>
+                        <td>Akshita@gmail.com</td>
+                        <td>
+                            <p id="AkshitaBalance">82000</p>
+                        </td>
+                    </tr>
+                    <tr class="table-info">
+                        <td>10</td>
+                        <td>Dani</td>
+                        <td>Dani@gmail.com</td>
+                        <td>
+                            <p id="DaniBalance">50000</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Footer starts here-->
+    <div class="foot">
+        <div class="container">
+            <div class="text">
+              <span class="title">Support :</span> 
+              <a class="donate-btn" onclick="donate()" ><b>Donate</b></a>
+              The SF Bank Project By - © <a href="https://www.linkedin.com/in/siddharth-mishra-22b64a204/" target="_blank">Vivek Potdar</a>
+            </div>
+        </div>
+      </div>
+      <!--Footer ends here-->
+</body>
+</html>
+<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
